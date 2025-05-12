@@ -1,4 +1,4 @@
 {
-    "css.lint.unknownAtRules": "ignore",
-    "diffEditor.renderIndicators": true
+  "css.lint.unknownAtRules": "ignore",
+  "diffEditor.renderIndicators": true
 }
