@@ -50,6 +50,7 @@ export default function Home() {
       </div>
 
       {isInterviewer ? (
+        // interviewer page
         <>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {QUICK_ACTIONS.map((action) => (
@@ -69,6 +70,7 @@ export default function Home() {
           />
         </>
       ) : (
+        // candidate page
         <>
         </>
       )}

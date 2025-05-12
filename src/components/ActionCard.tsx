@@ -1,6 +1,7 @@
 import { QuickActionType } from "@/constants";
 import { Card } from "./ui/card";
 
+// gradient fix
 // from-green-500/20 via-green-500/10 to-green-500/5
 // from-red-500/20 via-red-500/10 to-red-500/5
 // from-sky-500/20 via-sky-500/10 to-sky-500/5
