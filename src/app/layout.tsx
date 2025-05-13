@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import localFont from "next/font/local";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
+import "@stream-io/video-react-sdk/dist/css/styles.css"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
