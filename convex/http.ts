@@ -44,10 +44,16 @@ http.route({
 
     const eventType = event.type;
     if (eventType === "user.created") {
-      const { id, email_addresses, first_name, last_name, image_url } =
-        event.data;
+      const {
+        id,
+        username,
+        email_addresses,
+        first_name,
+        last_name,
+        image_url,
+      } = event.data;
       const email = email_addresses[0].email_address;
-      const name = `${first_name || ""} ${last_name || ""}.`.trim();
+      const name = username || `${first_name || ""} ${last_name || ""}`.trim();
 
       try {
         await context.runMutation(api.users.syncUser, {
@@ -59,6 +65,31 @@ http.route({
       } catch (error) {
         console.log("Error creating user", error);
         return new Response("Error creating user", { status: 500 });
+      }
+    }
+
+    if (eventType === "user.updated") {
+      const {
+        id,
+        username,
+        email_addresses,
+        first_name,
+        last_name,
+        image_url,
+      } = event.data;
+      const email = email_addresses[0].email_address;
+      const name = username || `${first_name || ""} ${last_name || ""}`.trim();
+
+      try {
+        await context.runMutation(api.users.syncUser, {
+          clerkId: id,
+          email,
+          name,
+          image: image_url,
+        });
+      } catch (error) {
+        console.log("Error updating user:", error);
+        return new Response("Error updating user", { status: 500 });
       }
     }
 

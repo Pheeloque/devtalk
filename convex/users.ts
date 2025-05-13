@@ -15,8 +15,13 @@ export const syncUser = mutation({
       .filter((q) => q.eq(q.field("clerkId"), args.clerkId))
       .first();
 
-    if (existingUser) return;
-
+    if (existingUser) {
+      return await context.db.patch(existingUser._id, {
+        name: args.name,
+        email: args.email,
+        image: args.image,
+      });
+    }
     return await context.db.insert("users", {
       ...args,
       role: "candidate",

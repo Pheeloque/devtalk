@@ -17,7 +17,7 @@ const StreamVideoProvider = ({ children }: { children: ReactNode }) => {
             apiKey: process.env.NEXT_PUBLIC_STREAM_API_KEY!,
             user: {
                 id: user?.id,
-                name: user?.firstName || "" + " " + user?.lastName || "" || user?.id,
+                name: user?.username || `${user?.firstName || ""} ${user?.lastName || ""}`.trim() || user?.id,
                 image: user?.imageUrl,
             },
             tokenProvider: streamTokenProvider,
