@@ -1,15 +1,24 @@
-import { CallControls, CallingState, CallParticipantsList, PaginatedGridLayout, SpeakerLayout, useCallStateHooks } from "@stream-io/video-react-sdk";
-import { LayoutListIcon, LoaderCircle, UsersIcon } from "lucide-react";
+import {
+  CallControls,
+  CallingState,
+  CallParticipantsList,
+  PaginatedGridLayout,
+  SpeakerLayout,
+  useCallStateHooks,
+} from "@stream-io/video-react-sdk";
+import { LayoutGridIcon, LoaderCircle, UsersIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "./ui/resizable";
+import EndCallButton from "./EndCallButton";
+import CodeEditor from "./CodeEditor";
 
 function MeetingRoom() {
   const router = useRouter();
 
-  const [layout, setLayout] = useState<'grid' | 'speaker'>('speaker');
+  const [layout, setLayout] = useState<"grid" | "speaker">("speaker");
   const [showParticipants, setShowParticipants] = useState(false);
   const { useCallCallingState } = useCallStateHooks();
 
@@ -20,7 +29,7 @@ function MeetingRoom() {
       <div className="h-96 flex items-center justify-center">
         <LoaderCircle className="size-6 animate=spin"></LoaderCircle>
       </div>
-    )
+    );
   }
 
   return (
@@ -28,7 +37,7 @@ function MeetingRoom() {
       <ResizablePanelGroup direction="horizontal">
         <ResizablePanel defaultSize={35} minSize={25} maxSize={100} className="relative">
           {/* video layout */}
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 top-4 sm:top-6 lg:top-8 right-4 sm:right-6 lg:right-8">
             {layout === "grid" ? <PaginatedGridLayout /> : <SpeakerLayout />}
 
             {/* participants list */}
@@ -40,7 +49,7 @@ function MeetingRoom() {
           </div>
 
           {/* video controls */}
-          <div className="absolute bottom-4 left-0 right-0">
+          <div className="absolute bottom-4 left-0 right-4 sm:right-6 lg:right-8">
             <div className="flex flex-col items-center gap-4">
               <div className="flex items-center gap-2 flex-wrap justify-center px-4">
                 <CallControls onLeave={() => router.push("/")} />
@@ -49,17 +58,13 @@ function MeetingRoom() {
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="outline" size="icon" className="size-10">
-                        <LayoutListIcon className="size-4" />
+                        <LayoutGridIcon className="size-4" />
                       </Button>
                     </DropdownMenuTrigger>
 
                     <DropdownMenuContent>
-                      <DropdownMenuItem onClick={() => setLayout("grid")}>
-                        Grid View
-                      </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => setLayout("speaker")}>
-                        Speaker View
-                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => setLayout("grid")}>Grid View</DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => setLayout("speaker")}>Speaker View</DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
 
@@ -72,7 +77,7 @@ function MeetingRoom() {
                     <UsersIcon className="size-4" />
                   </Button>
 
-                  <button>end call</button>
+                  <EndCallButton />
                 </div>
               </div>
             </div>
@@ -82,10 +87,10 @@ function MeetingRoom() {
         <ResizableHandle withHandle />
 
         <ResizablePanel defaultSize={65} minSize={25}>
-          <h1>code editor here</h1>
+          <CodeEditor />
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>
-  )
+  );
 }
-export default MeetingRoom
+export default MeetingRoom;

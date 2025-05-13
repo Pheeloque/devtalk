@@ -15,8 +15,8 @@ export const streamTokenProvider = async () => {
 
   const token = streamClient.generateUserToken({
     user_id: user.id,
-    validity_in_seconds: 7200,
-  }); // default 1h, set to 2h
+    validity_in_seconds: 3600,
+  }); // default 1h
 
   return token;
 };
