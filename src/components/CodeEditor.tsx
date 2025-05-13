@@ -4,13 +4,15 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "./ui/resiz
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { AlertCircleIcon, BookIcon, LightbulbIcon } from "lucide-react";
+import { AlertCircleIcon, BookIcon, LightbulbIcon, PlayIcon } from "lucide-react";
 import { Editor } from "@monaco-editor/react";
+import { Button } from "./ui/button";
 
 function CodeEditor() {
   const [selectedQuestion, setSelectedQuestion] = useState(CODING_QUESTIONS[0]);
   const [language, setLanguage] = useState<"javascript" | "python" | "java">(LANGUAGES[0].id);
   const [code, setCode] = useState(selectedQuestion.starterCode[language]);
+  const [output, setOutput] = useState<string>("");
 
   const handleQuestionChange = (questionId: string) => {
     const question = CODING_QUESTIONS.find((q) => q.id === questionId)!;
@@ -21,6 +23,21 @@ function CodeEditor() {
   const handleLanguageChange = (newLanguage: "javascript" | "python" | "java") => {
     setLanguage(newLanguage);
     setCode(selectedQuestion.starterCode[newLanguage]);
+  };
+
+  // only works for javascript
+  const runCode = () => {
+    if (language === "javascript") {
+      try {
+        const result = new Function(code)();
+        setOutput(String(result));
+      } catch (error) {
+        const errorAsError = error as Error;
+        setOutput(`Error: ${errorAsError.message}`);
+      }
+    } else {
+      setOutput("Running code in this language is not supported on the client-side.");
+    }
   };
 
   return (
@@ -147,7 +164,7 @@ function CodeEditor() {
       <ResizableHandle withHandle />
 
       {/* code editor area */}
-      <ResizablePanel defaultSize={60} maxSize={100}>
+      <ResizablePanel defaultSize={52} maxSize={100}>
         <div className="h-full relative">
           <Editor
             height={"100%"}
@@ -169,6 +186,30 @@ function CodeEditor() {
           />
         </div>
       </ResizablePanel>
+
+      {/* output area */}
+      {language === "javascript" && (
+        <>
+          <ResizableHandle withHandle />
+
+          <ResizablePanel defaultSize={8} maxSize={50} className="flex flex-col h-full overflow-hidden">
+            <div className="h-full flex items-center gap-2 p-4">
+              <Button className="rounded-full font-medium flex items-center gap-2" onClick={runCode}>
+                Run
+                <PlayIcon />
+              </Button>
+
+              <div className="flex items-center gap-2">
+                <span className="text-lg font-semibold">Output:</span>
+              </div>
+
+              <div className="flex-1 overflow-auto">
+                <code className="text-sm text-muted-foreground">{output}</code>
+              </div>
+            </div>
+          </ResizablePanel>
+        </>
+      )}
     </ResizablePanelGroup>
   );
 }
