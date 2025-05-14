@@ -8,8 +8,6 @@ export const INTERVIEW_CATEGORY = [
 ] as const;
 
 export const TIME_SLOTS = [
-  "09:00",
-  "09:30",
   "10:00",
   "10:30",
   "11:00",
@@ -25,6 +23,8 @@ export const TIME_SLOTS = [
   "16:00",
   "16:30",
   "17:00",
+  "17:30",
+  "18:00",
 ];
 
 export const QUICK_ACTIONS = [
