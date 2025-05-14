@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { AlertCircleIcon, BookIcon, LightbulbIcon, PlayIcon } from "lucide-react";
 import { Editor } from "@monaco-editor/react";
 import { Button } from "./ui/button";
-import * as ts from "typescript";
+import ts from "typescript";
 
 function CodeEditor() {
   const [selectedQuestion, setSelectedQuestion] = useState(CODING_QUESTIONS[0]);
@@ -30,26 +30,30 @@ function CodeEditor() {
     setCode(selectedQuestion.starterCode[newLanguage]);
   };
 
-  // only works for javascript
+  // only works for javascript/typescript
   const runCode = async () => {
     try {
       let finalCode = code;
 
       if (language === "typescript") {
-        // Транспиляция TypeScript в JavaScript
-        const transpiled = ts.transpileModule(code, {
-          compilerOptions: {
-            module: ts.ModuleKind.CommonJS,
-            target: ts.ScriptTarget.Latest,
-          },
-        });
+        // transpile typescript to javascript
+        const transpiled = ts.transpileModule(code, {});
         finalCode = transpiled.outputText;
       }
 
-      const result = new Function(finalCode)();
-      setOutput(JSON.stringify(result, null, 2));
+      // capture console output
+      let output = "";
+      const originalConsoleLog = console.log;
+      console.log = (...args) => {
+        output += args.map((arg) => (typeof arg === "object" ? JSON.stringify(arg, null, 2) : arg)).join(" ") + "\n";
+      };
+
+      new Function(finalCode)();
+
+      console.log = originalConsoleLog;
+      setOutput(output.trim());
     } catch (error) {
-      setOutput(`Error: ${(error as Error).message}`);
+      setOutput(`Error: ${error instanceof Error ? error.message : error}`);
     }
   };
 
@@ -70,7 +74,7 @@ function CodeEditor() {
                 </div>
                 <div className="flex items-center gap-3">
                   <Select value={selectedQuestion.id} onValueChange={handleQuestionChange}>
-                    <SelectTrigger className="w-[180px]">
+                    <SelectTrigger className="w-auto">
                       <SelectValue placeholder="Select question" />
                     </SelectTrigger>
                     <SelectContent>
@@ -150,7 +154,7 @@ function CodeEditor() {
                 </CardContent>
               </Card>
 
-              {/* CONSTRAINTS */}
+              {/* constraints */}
               {selectedQuestion.constraints && (
                 <Card>
                   <CardHeader className="flex flex-row items-center gap-2">
