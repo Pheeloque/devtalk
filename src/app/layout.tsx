@@ -31,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <ConvexClerkProvider>
-      <html lang="en" suppressHydrationWarning>
+      <html lang="ru" suppressHydrationWarning>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >

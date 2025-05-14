@@ -7,10 +7,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { AlertCircleIcon, BookIcon, LightbulbIcon, PlayIcon } from "lucide-react";
 import { Editor } from "@monaco-editor/react";
 import { Button } from "./ui/button";
+import * as ts from "typescript";
 
 function CodeEditor() {
   const [selectedQuestion, setSelectedQuestion] = useState(CODING_QUESTIONS[0]);
-  const [language, setLanguage] = useState<"javascript" | "python" | "java">(LANGUAGES[0].id);
+  const [language, setLanguage] = useState<
+    "javascript" | "python" | "java" | "typescript" | "cpp" | "csharp" | "php" | "swift" | "go"
+  >(LANGUAGES[0].id);
   const [code, setCode] = useState(selectedQuestion.starterCode[language]);
   const [output, setOutput] = useState<string>("");
 
@@ -20,23 +23,33 @@ function CodeEditor() {
     setCode(question.starterCode[language]);
   };
 
-  const handleLanguageChange = (newLanguage: "javascript" | "python" | "java") => {
+  const handleLanguageChange = (
+    newLanguage: "javascript" | "python" | "java" | "typescript" | "cpp" | "csharp" | "php" | "swift" | "go"
+  ) => {
     setLanguage(newLanguage);
     setCode(selectedQuestion.starterCode[newLanguage]);
   };
 
   // only works for javascript
-  const runCode = () => {
-    if (language === "javascript") {
-      try {
-        const result = new Function(code)();
-        setOutput(String(result));
-      } catch (error) {
-        const errorAsError = error as Error;
-        setOutput(`Error: ${errorAsError.message}`);
+  const runCode = async () => {
+    try {
+      let finalCode = code;
+
+      if (language === "typescript") {
+        // Транспиляция TypeScript в JavaScript
+        const transpiled = ts.transpileModule(code, {
+          compilerOptions: {
+            module: ts.ModuleKind.CommonJS,
+            target: ts.ScriptTarget.Latest,
+          },
+        });
+        finalCode = transpiled.outputText;
       }
-    } else {
-      setOutput("Running code in this language is not supported on the client-side.");
+
+      const result = new Function(finalCode)();
+      setOutput(JSON.stringify(result, null, 2));
+    } catch (error) {
+      setOutput(`Error: ${(error as Error).message}`);
     }
   };
 
@@ -53,7 +66,7 @@ function CodeEditor() {
                   <div className="flex items-center gap-2">
                     <h2 className="text-2xl font-semibold tracking-tight">{selectedQuestion.title}</h2>
                   </div>
-                  <p className="text-sm text-muted-foreground">Choose your language and solve the problem</p>
+                  <p className="text-sm text-muted-foreground">Выберите язык и решите задачу</p>
                 </div>
                 <div className="flex items-center gap-3">
                   <Select value={selectedQuestion.id} onValueChange={handleQuestionChange}>
@@ -98,7 +111,7 @@ function CodeEditor() {
               <Card>
                 <CardHeader className="flex flex-row items-center gap-2">
                   <BookIcon className="size-6 text-primary/90" />
-                  <CardTitle className="text-lg">Problem Description</CardTitle>
+                  <CardTitle className="text-lg">Описание</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm leading-relaxed">
                   <div className="prose prose-sm dark:prose-invert max-w-none">
@@ -111,20 +124,20 @@ function CodeEditor() {
               <Card>
                 <CardHeader className="flex flex-row items-center gap-2">
                   <LightbulbIcon className="size-6 text-yellow-500" />
-                  <CardTitle className="text-lg">Examples</CardTitle>
+                  <CardTitle className="text-lg">Примеры</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ScrollArea className="h-full w-full rounded-md border">
                     <div className="p-4 space-y-4">
                       {selectedQuestion.examples.map((example, index) => (
                         <div key={index} className="space-y-2">
-                          <p className="font-medium text-sm">Example {index + 1}:</p>
+                          <p className="font-medium text-sm">Пример {index + 1}:</p>
                           <ScrollArea className="h-full w-full rounded-md">
                             <pre className="bg-muted/50 p-3 rounded-lg text-sm font-mono">
-                              <div>Input: {example.input}</div>
-                              <div>Output: {example.output}</div>
+                              <div>Ввод: {example.input}</div>
+                              <div>Вывод: {example.output}</div>
                               {example.explanation && (
-                                <div className="pt-2 text-muted-foreground">Explanation: {example.explanation}</div>
+                                <div className="pt-2 text-muted-foreground">Пояснение: {example.explanation}</div>
                               )}
                             </pre>
                             <ScrollBar orientation="horizontal" />
@@ -142,7 +155,7 @@ function CodeEditor() {
                 <Card>
                   <CardHeader className="flex flex-row items-center gap-2">
                     <AlertCircleIcon className="size-6 text-red-500" />
-                    <CardTitle className="text-lg">Constraints</CardTitle>
+                    <CardTitle className="text-lg">Ограничения</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ul className="list-disc list-inside space-y-1.5 text-sm marker:text-muted-foreground">
@@ -188,7 +201,7 @@ function CodeEditor() {
       </ResizablePanel>
 
       {/* output area */}
-      {language === "javascript" && (
+      {["javascript", "typescript"].includes(language) && (
         <>
           <ResizableHandle withHandle />
 
@@ -196,11 +209,11 @@ function CodeEditor() {
             <div className="h-full flex items-center gap-2 p-4">
               <Button className="rounded-full font-medium flex items-center gap-2" onClick={runCode}>
                 <PlayIcon />
-                Run
+                Запустить
               </Button>
 
               <div className="flex items-center gap-2">
-                <span className="text-lg font-semibold">Output:</span>
+                <span className="text-lg font-semibold">Результат:</span>
               </div>
 
               <div className="flex-1 overflow-auto">

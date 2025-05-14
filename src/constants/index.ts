@@ -30,29 +30,33 @@ export const TIME_SLOTS = [
 export const QUICK_ACTIONS = [
   {
     icon: Terminal,
-    title: "New Call",
-    description: "Start an instant call",
+    engTitle: "New Call",
+    title: "Начать",
+    description: "Создайте новую встречу",
     color: "green-500",
     gradient: "from-green-500/20 via-green-500/10 to-green-500/5",
   },
   {
     icon: Users,
-    title: "Join Interview",
-    description: "Enter via invitation link",
+    engTitle: "Join Interview",
+    title: "Присоединиться",
+    description: "Войдите в звонок по ссылке",
     color: "red-500",
     gradient: "from-red-500/20 via-red-500/10 to-red-500/5",
   },
   {
     icon: Calendar,
-    title: "Schedule",
-    description: "Plan upcoming interviews",
+    engTitle: "Schedule",
+    title: "Календарь",
+    description: "Планируйте предстоящие собеседования",
     color: "sky-500",
     gradient: "from-sky-500/20 via-sky-500/10 to-sky-500/5",
   },
   {
     icon: Video,
-    title: "Recordings",
-    description: "Access past interviews",
+    engTitle: "Recordings",
+    title: "Записи",
+    description: "Просмотрите прошедшие собеседования",
     color: "amber-500",
     gradient: "from-amber-500/20 via-amber-500/10 to-amber-500/5",
   },
@@ -61,14 +65,14 @@ export const QUICK_ACTIONS = [
 export const CODING_QUESTIONS: CodeQuestion[] = [
   {
     id: "two-sum",
-    title: "Two Sum",
+    title: "Сумма двух чисел",
     description:
-      "Given an array of integers `nums` and an integer `target`, return indices of the two numbers in the array such that they add up to `target`.\n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.",
+      "Дан массив целых чисел `nums` и целое число `target`. Найдите индексы двух чисел в массиве, которые в сумме дают `target`.\n\nГарантируется, что существует ровно одно решение, и один элемент нельзя использовать дважды.",
     examples: [
       {
         input: "nums = [2,7,11,15], target = 9",
         output: "[0,1]",
-        explanation: "Because nums[0] + nums[1] == 9, we return [0, 1]",
+        explanation: "nums[0] + nums[1] = 9, поэтому возвращаем [0, 1]",
       },
       {
         input: "nums = [3,2,4], target = 6",
@@ -76,32 +80,28 @@ export const CODING_QUESTIONS: CodeQuestion[] = [
       },
     ],
     starterCode: {
-      javascript: `function twoSum(nums, target) {
-  // Write your solution here
-  
-}`,
-      python: `def two_sum(nums, target):
-    # Write your solution here
-    pass`,
-      java: `class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        // Write your solution here
-        
-    }
-}`,
+      javascript: "function twoSum(nums, target) {\n  // Напишите решение здесь\n  \n}",
+      typescript: "function twoSum(nums: number[], target: number): number[] {\n  // Напишите решение здесь\n  \n}",
+      python: "def two_sum(nums, target):\n    # Напишите решение здесь\n    pass",
+      java: "class Solution {\n    public int[] twoSum(int[] nums, int target) {\n        // Напишите решение здесь\n        \n    }\n}",
+      cpp: "std::vector<int> twoSum(std::vector<int>& nums, int target) {\n    // Напишите решение здесь\n    \n}",
+      csharp: "public int[] TwoSum(int[] nums, int target) {\n    // Напишите решение здесь\n    \n}",
+      php: "function twoSum($nums, $target) {\n    // Напишите решение здесь\n    \n}",
+      swift: "func twoSum(_ nums: [Int], _ target: Int) -> [Int] {\n    // Напишите решение здесь\n    \n}",
+      go: "func twoSum(nums []int, target int) []int {\n    // Напишите решение здесь\n    \n}",
     },
     constraints: [
-      "2 ≤ nums.length ≤ 104",
-      "-109 ≤ nums[i] ≤ 109",
-      "-109 ≤ target ≤ 109",
-      "Only one valid answer exists.",
+      "2 ≤ nums.length ≤ 10⁴",
+      "-10⁹ ≤ nums[i] ≤ 10⁹",
+      "-10⁹ ≤ target ≤ 10⁹",
+      "Существует ровно одно правильное решение",
     ],
   },
   {
     id: "reverse-string",
-    title: "Reverse String",
+    title: "Перевернуть строку",
     description:
-      "Write a function that reverses a string. The input string is given as an array of characters `s`.\n\nYou must do this by modifying the input array in-place with O(1) extra memory.",
+      "Напишите функцию, которая переворачивает строку. Строка задана как массив символов `s`.\n\nНеобходимо изменить массив на месте, используя O(1) дополнительной памяти.",
     examples: [
       {
         input: 's = ["h","e","l","l","o"]',
@@ -113,61 +113,116 @@ export const CODING_QUESTIONS: CodeQuestion[] = [
       },
     ],
     starterCode: {
-      javascript: `function reverseString(s) {
-  // Write your solution here
-  
-}`,
-      python: `def reverse_string(s):
-    # Write your solution here
-    pass`,
-      java: `class Solution {
-    public void reverseString(char[] s) {
-        // Write your solution here
-        
-    }
-}`,
+      javascript: "function reverseString(s) {\n  // Напишите решение здесь\n  \n}",
+      typescript: "function reverseString(s: string[]): void {\n  // Напишите решение здесь\n  \n}",
+      python: "def reverse_string(s):\n    # Напишите решение здесь\n    pass",
+      java: "class Solution {\n    public void reverseString(char[] s) {\n        // Напишите решение здесь\n        \n    }\n}",
+      cpp: "void reverseString(std::vector<char>& s) {\n    // Напишите решение здесь\n    \n}",
+      csharp: "public void ReverseString(char[] s) {\n    // Напишите решение здесь\n    \n}",
+      php: "function reverseString(&$s) {\n    // Напишите решение здесь\n    \n}",
+      swift: "func reverseString(_ s: inout [Character]) {\n    // Напишите решение здесь\n    \n}",
+      go: "func reverseString(s []rune) {\n    // Напишите решение здесь\n    \n}",
     },
   },
   {
     id: "palindrome-number",
-    title: "Palindrome Number",
+    title: "Число-палиндром",
     description:
-      "Given an integer `x`, return `true` if `x` is a palindrome, and `false` otherwise.\n\nAn integer is a palindrome when it reads the same forward and backward.",
+      "Дано целое число `x`. Верните `true`, если число является палиндромом, и `false` в противном случае.\n\nПалиндромом считается число, которое читается одинаково слева направо и справа налево.",
     examples: [
       {
         input: "x = 121",
         output: "true",
-        explanation: "121 reads as 121 from left to right and from right to left.",
+        explanation: "121 читается одинаково в обоих направлениях",
       },
       {
         input: "x = -121",
         output: "false",
-        explanation:
-          "From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.",
+        explanation: "Слева направо: -121, справа налево: 121-",
       },
     ],
     starterCode: {
-      javascript: `function isPalindrome(x) {
-  // Write your solution here
-  
-}`,
-      python: `def is_palindrome(x):
-    # Write your solution here
-    pass`,
-      java: `class Solution {
-    public boolean isPalindrome(int x) {
-        // Write your solution here
-        
-    }
-}`,
+      javascript: "function isPalindrome(x) {\n  // Напишите решение здесь\n  \n}",
+      typescript: "function isPalindrome(x: number): boolean {\n  // Напишите решение здесь\n  \n}",
+      python: "def is_palindrome(x):\n    # Напишите решение здесь\n    pass",
+      java: "class Solution {\n    public boolean isPalindrome(int x) {\n        // Напишите решение здесь\n        \n    }\n}",
+      cpp: "bool isPalindrome(int x) {\n    // Напишите решение здесь\n    \n}",
+      csharp: "public bool IsPalindrome(int x) {\n    // Напишите решение здесь\n    \n}",
+      php: "function isPalindrome($x) {\n    // Напишите решение здесь\n    \n}",
+      swift: "func isPalindrome(_ x: Int) -> Bool {\n    // Напишите решение здесь\n    \n}",
+      go: "func isPalindrome(x int) bool {\n    // Напишите решение здесь\n    \n}",
     },
+  },
+  {
+    id: "valid-parentheses",
+    title: "Правильные скобки",
+    description:
+      "Дана строка `s`, содержащая только символы '(', ')', '{', '}', '[' и ']', определите, является ли последовательность скобок правильной.\n\nПравильная последовательность должна удовлетворять:\n1. Открытые скобки должны быть закрыты в правильном порядке\n2. Каждая открытая скобка имеет соответствующую закрытую",
+    examples: [
+      {
+        input: 's = "()"',
+        output: "true",
+        explanation: "Скобки закрыты в правильном порядке",
+      },
+      {
+        input: 's = "([)]"',
+        output: "false",
+        explanation: "Нарушен порядок закрытия скобок",
+      },
+    ],
+    starterCode: {
+      javascript: "function isValid(s) {\n  // Напишите решение здесь\n  \n}",
+      typescript: "function isValid(s: string): boolean {\n  // Напишите решение здесь\n  \n}",
+      python: "def is_valid(s):\n    # Напишите решение здесь\n    pass",
+      java: "class Solution {\n    public boolean isValid(String s) {\n        // Напишите решение здесь\n        \n    }\n}",
+      cpp: "bool isValid(string s) {\n    // Напишите решение здесь\n    \n}",
+      csharp: "public bool IsValid(string s) {\n    // Напишите решение здесь\n    \n}",
+      php: "function isValid($s) {\n    // Напишите решение здесь\n    \n}",
+      swift: "func isValid(_ s: String) -> Bool {\n    // Напишите решение здесь\n    \n}",
+      go: "func isValid(s string) bool {\n    // Напишите решение здесь\n    \n}",
+    },
+  },
+  {
+    id: "max-subarray",
+    title: "Максимальный подмассив",
+    description:
+      "Найдите непрерывный подмассив (содержащий хотя бы один элемент) с наибольшей суммой и верните эту сумму.",
+    examples: [
+      {
+        input: "nums = [-2,1,-3,4,-1,2,1,-5,4]",
+        output: "6",
+        explanation: "Подмассив [4,-1,2,1] имеет максимальную сумму 6",
+      },
+      {
+        input: "nums = [5,4,-1,7,8]",
+        output: "23",
+      },
+    ],
+    starterCode: {
+      javascript: "function maxSubArray(nums) {\n  // Напишите решение здесь\n  \n}",
+      typescript: "function maxSubArray(nums: number[]): number {\n  // Напишите решение здесь\n  \n}",
+      python: "def max_sub_array(nums):\n    # Напишите решение здесь\n    pass",
+      java: "class Solution {\n    public int maxSubArray(int[] nums) {\n        // Напишите решение здесь\n        \n    }\n}",
+      cpp: "int maxSubArray(vector<int>& nums) {\n    // Напишите решение здесь\n    \n}",
+      csharp: "public int MaxSubArray(int[] nums) {\n    // Напишите решение здесь\n    \n}",
+      php: "function maxSubArray($nums) {\n    // Напишите решение здесь\n    \n}",
+      swift: "func maxSubArray(_ nums: [Int]) -> Int {\n    // Напишите решение здесь\n    \n}",
+      go: "func maxSubArray(nums []int) int {\n    // Напишите решение здесь\n    \n}",
+    },
+    constraints: ["1 ≤ nums.length ≤ 10⁵", "-10⁴ ≤ nums[i] ≤ 10⁴"],
   },
 ];
 
 export const LANGUAGES = [
   { id: "javascript", name: "JavaScript", icon: "/javascript.png" },
+  { id: "typescript", name: "TypeScript", icon: "/typescript.png" },
   { id: "python", name: "Python", icon: "/python.png" },
   { id: "java", name: "Java", icon: "/java.png" },
+  { id: "cpp", name: "C++", icon: "/cpp.png" },
+  { id: "csharp", name: "C#", icon: "/csharp.png" },
+  { id: "php", name: "PHP", icon: "/php.png" },
+  { id: "swift", name: "Swift", icon: "/swift.png" },
+  { id: "go", name: "Go", icon: "/go.png" },
 ] as const;
 
 export interface CodeQuestion {
@@ -181,8 +236,14 @@ export interface CodeQuestion {
   }>;
   starterCode: {
     javascript: string;
+    typescript: string;
     python: string;
     java: string;
+    cpp: string;
+    csharp: string;
+    php: string;
+    swift: string;
+    go: string;
   };
   constraints?: string[];
 }

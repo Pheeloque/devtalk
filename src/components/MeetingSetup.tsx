@@ -35,8 +35,8 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
           {/* camera preview */}
           <Card className="md:col-span-1 p-6 flex flex-col">
             <div>
-              <h1 className="text-xl font-semibold mb-1">Camera Preview</h1>
-              <p className="text-sm text-muted-foreground">Make sure you look good!</p>
+              <h1 className="text-xl font-semibold mb-1">Предварительный просмотр</h1>
+              <p className="text-sm text-muted-foreground">Убедитесь, что Вы хорошо выглядите!</p>
             </div>
 
             <div className="mt-4 flex-1 min-h-[400px] rounded-xl overflow-hidden bg-muted/50 border relative">
@@ -51,7 +51,7 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
             <div className="h-full flex flex-col">
               {/* meeting details */}
               <div>
-                <h2 className="text-xl font-semibold mb-1">Meeting Details</h2>
+                <h2 className="text-xl font-semibold mb-1">Настройка и выбор устройств</h2>
                 <p className="text-sm text-muted-foreground break-all">{call.id}</p>
               </div>
 
@@ -68,7 +68,7 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
                         )}
                       </div>
                       <div>
-                        <p className="font-medium">Camera</p>
+                        <p className="font-medium">Камера</p>
                         <p className="text-sm text-muted-foreground">{isCameraDisabled ? "Off" : "On"}</p>
                       </div>
                     </div>
@@ -86,7 +86,7 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
                         )}
                       </div>
                       <div>
-                        <p className="font-medium">Microphone</p>
+                        <p className="font-medium">Микрофон</p>
                         <p className="text-sm text-muted-foreground">{isMicrophoneDisabled ? "Off" : "On"}</p>
                       </div>
                     </div>
@@ -103,8 +103,8 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
                         <SettingsIcon className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <p className="font-medium">Settings</p>
-                        <p className="text-sm text-muted-foreground">Configure devices</p>
+                        <p className="font-medium">Настройки</p>
+                        <p className="text-sm text-muted-foreground">Выберите устройства</p>
                       </div>
                     </div>
                     <DeviceSettings />
@@ -114,10 +114,10 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
                 {/* join button */}
                 <div className="space-y-3 mt-8">
                   <Button className="w-full" size="lg" onClick={handleJoin}>
-                    Join Meeting
+                    Присоединиться
                   </Button>
                   <p className="text-xs text-center text-muted-foreground">
-                    Do not worry, our team is super friendly! We want you to succeed. 🎉
+                    Не волнуйтесь. Мы хотим, чтобы вы успешно прошли собеседование.
                   </p>
                 </div>
               </div>

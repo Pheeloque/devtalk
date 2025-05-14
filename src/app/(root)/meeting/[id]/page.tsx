@@ -21,7 +21,7 @@ function MeetingPage() {
   if (!call) {
     return (
       <div className="h-[calc(100vh-4rem-1px)] flex items-center justify-center">
-        <p className="text-2xl font-semibold">Meeting Not Found</p>
+        <p className="text-2xl font-semibold">Встреча не найдена</p>
       </div>
     );
   }

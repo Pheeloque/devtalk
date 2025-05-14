@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import ActionCard from "@/components/ActionCard";
 import { QUICK_ACTIONS } from "@/constants";
@@ -22,7 +22,7 @@ export default function Home() {
     switch (title) {
       case "New Call":
         setModalType("start");
-        setShowModal(true)
+        setShowModal(true);
         break;
       case "Join Interview":
         setModalType("join");
@@ -33,19 +33,19 @@ export default function Home() {
     }
   };
 
-  if (isLoading) return <p>loading...</p>
+  if (isLoading) return <p>loading...</p>;
 
   return (
     <div className="container max-w-7xl mx-auto p-6">
       {/*welcome section*/}
       <div className="rounded-lg bg-card bg-gradient-to-r from-green-500/5 via-green-500/2 to-transparent p-6 border mb-10">
         <h1 className="text-5xl font-bold bg-gradient-to-r from-green-500 to-emerald-300 bg-clip-text text-transparent">
-          Welcome to DevTalk
+          Добро пожаловать в DevTalk!
         </h1>
         <p className="text-muted-foreground mt-4">
           {isInterviewer
-            ? "Schedule and manage your interviews with ease"
-            : "Always be ready for upcoming interviews"}
+            ? "С легкостью планируйте и управляйте собеседованиями"
+            : "Всегда будьте в курсе о предстоящих собеседованиях"}
         </p>
       </div>
 
@@ -54,25 +54,20 @@ export default function Home() {
         <>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {QUICK_ACTIONS.map((action) => (
-              <ActionCard
-                key={action.title}
-                action={action}
-                onClick={() => handleQuickAction(action.title)}
-              />
+              <ActionCard key={action.engTitle} action={action} onClick={() => handleQuickAction(action.engTitle)} />
             ))}
           </div>
 
           <MeetingModal
             isOpen={showModal}
             onClose={() => setShowModal(false)}
-            title={modalType === "join" ? "Join Meeting" : "Start Meeting"}
+            title={modalType === "join" ? "Присоединиться к встрече" : "Новая встреча"}
             isJoinMeeting={modalType === "join"}
           />
         </>
       ) : (
         // candidate page
-        <>
-        </>
+        <></>
       )}
     </div>
   );

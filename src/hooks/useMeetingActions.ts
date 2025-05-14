@@ -23,15 +23,15 @@ const useMeetingActions = () => {
       });
 
       router.push(`/meeting/${call.id}`);
-      toast.success("Meeting Created");
+      toast.success("Встреча создана");
     } catch (error) {
       console.error(error);
-      toast.error("Failed to create meeting");
+      toast.error("Не удалось создать встречу");
     }
   };
 
   const joinMeeting = (callId: string) => {
-    if (!client) return toast.error("Failed to join meeting");
+    if (!client) return toast.error("Не удалось подключиться к встрече");
     router.push(`/meeting/${callId}`);
   };
 
