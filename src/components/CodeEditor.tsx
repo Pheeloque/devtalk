@@ -195,8 +195,8 @@ function CodeEditor() {
           <ResizablePanel defaultSize={8} maxSize={50} className="flex flex-col h-full overflow-hidden">
             <div className="h-full flex items-center gap-2 p-4">
               <Button className="rounded-full font-medium flex items-center gap-2" onClick={runCode}>
-                Run
                 <PlayIcon />
+                Run
               </Button>
 
               <div className="flex items-center gap-2">

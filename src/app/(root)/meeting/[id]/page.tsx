@@ -6,34 +6,32 @@ import MeetingSetup from "@/components/MeetingSetup";
 import useGetCallById from "@/hooks/useGetCallById";
 import { useUser } from "@clerk/nextjs";
 import { StreamCall, StreamTheme } from "@stream-io/video-react-sdk";
-import { useParams } from "next/navigation"
+import { useParams } from "next/navigation";
 import { useState } from "react";
 
 function MeetingPage() {
-    const { id } = useParams();
-    const { isLoaded } = useUser();
-    const { call, isCallLoading } = useGetCallById(id);
+  const { id } = useParams();
+  const { isLoaded } = useUser();
+  const { call, isCallLoading } = useGetCallById(id);
 
-    const [isSetupComplete, setIsSetupComplete] = useState(false);
+  const [isSetupComplete, setIsSetupComplete] = useState(false);
 
-    if (!isLoaded || isCallLoading) return <LoaderUI />;
+  if (!isLoaded || isCallLoading) return <LoaderUI />;
 
-    if (!call) {
-        return (
-            <div className="h-[calc(100vh-4rem-1px)] flex items-center justify-center">
-                <p className="text-2xl font-semibold">Meeting Not Found</p>
-            </div>
-        )
-    }
+  if (!call) {
+    return (
+      <div className="h-[calc(100vh-4rem-1px)] flex items-center justify-center">
+        <p className="text-2xl font-semibold">Meeting Not Found</p>
+      </div>
+    );
+  }
 
-    return <StreamCall call={call}>
-        <StreamTheme>
-            {!isSetupComplete ? (
-                <MeetingSetup onSetupComplete={() => setIsSetupComplete(true)} />
-            ) : (
-                <MeetingRoom />
-            )}
-        </StreamTheme>
+  return (
+    <StreamCall call={call}>
+      <StreamTheme>
+        {!isSetupComplete ? <MeetingSetup onSetupComplete={() => setIsSetupComplete(true)} /> : <MeetingRoom />}
+      </StreamTheme>
     </StreamCall>
+  );
 }
-export default MeetingPage
+export default MeetingPage;
