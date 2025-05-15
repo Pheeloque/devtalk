@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DevTalk
 
-## Getting Started
+## 📋 Overview / Общие сведения
 
-First, run the development server:
+DevTalk — это приложение для проведения технических собеседований, созданное на основе **Next.js**. Оно упрощает взаимодействие между кандидатами и собеседующими, предоставляя собеседующему возможность организовывать встречи, а кандидату — использовать редактор кода прямо во время звонка.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Основные функции
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 👥 Для собеседующих:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Управление звонками:** Назначайте, организуйте и присоединяйтесь к видеозвонкам с кандидатами с помощью **Stream**.
+- **Планирование звонков:** Создавайте расписание собеседований, которое автоматически отображается на панели кандидата.
+- **Запись сессий:** Доступ к записям прошедших собеседований для анализа и оценки.
 
-## Learn More
+### 📝 Для кандидатов:
 
-To learn more about Next.js, take a look at the following resources:
+- **Панель кандидата:** Просматривайте предстоящие собеседования и присоединяйтесь к звонкам в одном месте.
+- **Управление задачами:** Доступ к задачам, назначенным собеседующим, прямо во время звонка.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 💻 Во время звонка:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Зона задач:** Пространство для решения задач, включая выбор заданий, языка и редактор кода.
+- **Панель участников:** Просматривайте и взаимодействуйте с другими участниками звонка.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠️ Стек технологий:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Next.js** - Основной фреймворк для серверного рендеринга и фронтенд-разработки.
+- **Convex** - Серверless база данных для синхронизации данных в реальном времени.
+- **Clerk** - Аутентификация и управление пользователями.
+- **Stream** - Видеозвонки и чат высокого качества.
+- **Shadcn/UI & Lucide** - Современные, настраиваемые UI-компоненты и иконки.
+- **Toast** - Реальные уведомления.
