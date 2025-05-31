@@ -74,6 +74,10 @@
   }
 }
 
+.str-video__participant-details {
+  color: #ffffff !important;
+}
+
 /* manually added fonts to fix */
 body {
   font-family: var(--font-geist-sans);

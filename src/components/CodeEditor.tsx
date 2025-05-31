@@ -1,5 +1,5 @@
 import { CODING_QUESTIONS, LANGUAGES } from "@/constants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "./ui/resizable";
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { AlertCircleIcon, BookIcon, LightbulbIcon, PlayIcon } from "lucide-react";
 import { Editor } from "@monaco-editor/react";
 import { Button } from "./ui/button";
+import { useTheme } from "next-themes";
 import ts from "typescript";
 
 function CodeEditor() {
@@ -16,6 +17,12 @@ function CodeEditor() {
   >(LANGUAGES[0].id);
   const [code, setCode] = useState(selectedQuestion.starterCode[language]);
   const [output, setOutput] = useState<string>("");
+  const { resolvedTheme } = useTheme();
+  const [editorTheme, setEditorTheme] = useState<"vs-dark" | "vs">("vs-dark");
+
+  useEffect(() => {
+    setEditorTheme(resolvedTheme === "light" ? "vs" : "vs-dark");
+  }, [resolvedTheme]);
 
   const handleQuestionChange = (questionId: string) => {
     const question = CODING_QUESTIONS.find((q) => q.id === questionId)!;
@@ -188,7 +195,7 @@ function CodeEditor() {
             defaultLanguage={language}
             language={language}
             value={code}
-            theme="vs-dark"
+            theme={editorTheme}
             onChange={(value) => setCode(value || "")}
             options={{
               minimap: { enabled: false },
