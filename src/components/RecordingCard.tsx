@@ -18,7 +18,7 @@ function RecordingCard({ recording }: { recording: CallRecording }) {
   };
 
   const formattedStartTime = recording.start_time
-    ? format(new Date(recording.start_time), "d MMM yyyy, HH:mm", { locale: ru })
+    ? format(new Date(recording.start_time), "d MMM yyyy, HH:MM", { locale: ru })
     : "Неизвестно";
 
   const duration =

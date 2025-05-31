@@ -86,7 +86,7 @@ function DashboardPage() {
                             </div>
                             <div className="flex items-center gap-1">
                               <ClockIcon className="h-4 w-4" />
-                              {format(startTime, "hh:mm", { locale: ru })}
+                              {format(startTime, "HH:MM", { locale: ru })}
                             </div>
                           </div>
                         </CardContent>
