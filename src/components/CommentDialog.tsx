@@ -96,7 +96,7 @@ function CommentDialog({ interviewId }: { interviewId: Id<"interviews"> }) {
                             <div>
                               <p className="text-sm font-medium">{interviewer.name}</p>
                               <p className="text-xs text-muted-foreground">
-                                {format(comment._creationTime, "d MMM, yyyy, h:mm", { locale: ru })}
+                                {format(comment._creationTime, "d MMM, yyyy, HH:mm", { locale: ru })}
                               </p>
                             </div>
                           </div>
